@@ -1,3 +1,6 @@
+Build a real estate website with dynamic listings, interactive maps, and seamless user 
+experiences for success.
+
 Firebase: Real-time database and authentication services for web
 
 Tailwind CSS: Utility-first CSS framework for rapid UI development.
