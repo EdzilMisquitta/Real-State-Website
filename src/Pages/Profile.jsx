@@ -65,37 +65,35 @@ function Profile() {
   useEffect(() => {
     async function fetchdata() {
       const docRef = collection(db, "listings");
-      
+
       const q = query(
         docRef,
         where("userRef", "==", auth.currentUser.uid),
         orderBy("timestamp", "desc")
       );
-        
+
       const querySnap = await getDocs(q);
 
-      console.log(querySnap)
+      console.log(querySnap);
       let datastore = [];
       querySnap.forEach((data) => {
-        return datastore.push({ id: data.id, data: data.data(), });
+        return datastore.push({ id: data.id, data: data.data() });
       });
       setlisting(datastore);
       setloading(false);
-     
     }
     fetchdata();
   }, [auth.currentUser.uid]);
-  async function onDelete(ID){
-    if(window.confirm("Are You Sure You Want TO Delete")){
-      const docref = doc(db,"listings",ID)
-      await deleteDoc(docref)
-      const updatelist= listing.filter((data)=>data.id!==ID)
-      setlisting(updatelist)
-      toast.success("Successful Updated")
+  async function onDelete(ID) {
+    if (window.confirm("Are You Sure You Want TO Delete")) {
+      const docref = doc(db, "listings", ID);
+      await deleteDoc(docref);
+      const updatelist = listing.filter((data) => data.id !== ID);
+      setlisting(updatelist);
+      toast.success("Successful Updated");
     }
-
   }
-  function onEdit(ID){
+  function onEdit(ID) {
     navigate(`/edit-listing/${ID}`);
   }
 
@@ -103,7 +101,7 @@ function Profile() {
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center mt-6 font-bold">My Profile</h1>
-        <div className="w-full md:w-[50%] mt-6 px-3">
+        <div className="w-full  mt-6 px-3">
           <form>
             <input
               disabled={Editstatus ? false : true}
@@ -172,11 +170,19 @@ function Profile() {
               My Listings
             </h2>
             <ul className="sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-              {listing.map((data)=>(<Itemstructure key={data.id} id={data.id} listing={data.data} 
-              onDelete={()=>{onDelete(data.id)}}
-              onEdit={()=>{onEdit(data.id)}}
-              />))}
-
+              {listing.map((data) => (
+                <Itemstructure
+                  key={data.id}
+                  id={data.id}
+                  listing={data.data}
+                  onDelete={() => {
+                    onDelete(data.id);
+                  }}
+                  onEdit={() => {
+                    onEdit(data.id);
+                  }}
+                />
+              ))}
             </ul>
           </>
         )}
