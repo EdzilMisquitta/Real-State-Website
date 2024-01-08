@@ -14,43 +14,38 @@ import EditListing from "./Pages/EditListing";
 import Listing from "./Pages/Listing";
 import Category from "./Pages/Category";
 import Aboutus from "./Pages/Aboutus";
+import Footer from "./Components/Footer";
+import "./App.css";
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Router>
         <Header />
         <Routes>
-          
           <Route path="/" element={<Home />}></Route>
-          <Route path="/Profile" element={<PrivateRoute/>}>
+          <Route path="/Profile" element={<PrivateRoute />}>
             <Route path="/Profile" element={<Profile />}></Route>
           </Route>
-          
+
           <Route path="/SignIn" element={<SignIn />}></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/Forgot-Password" element={<ForgotPassword />}></Route>
           <Route path="/Offer" element={<Offer />}></Route>
 
-          <Route path="/Create-Listing" element={<PrivateRoute/>}>
-            <Route path="/Create-Listing" element={<CreateListing/>}></Route>
+          <Route path="/Create-Listing" element={<PrivateRoute />}>
+            <Route path="/Create-Listing" element={<CreateListing />}></Route>
           </Route>
 
-          <Route path="/Edit-Listing" element={<PrivateRoute/>}>
-            <Route path="/Edit-Listing:ID" element={<EditListing/>}></Route>
+          <Route path="/Edit-Listing" element={<PrivateRoute />}>
+            <Route path="/Edit-Listing:ID" element={<EditListing />}></Route>
           </Route>
 
-          <Route
-            path="/category/:categoryName/:ID"
-            element={<Listing />}
-          />
-           <Route
-            path="/category/:categoryName"
-            element={<Category/>}
-          />
-          <Route path="/Aboutus" element={<Aboutus/>}/>
+          <Route path="/category/:categoryName/:ID" element={<Listing />} />
+          <Route path="/category/:categoryName" element={<Category />} />
+          <Route path="/Aboutus" element={<Aboutus />} />
         </Routes>
-        
+        <Footer />
       </Router>
       <ToastContainer
         position="top-center"
@@ -64,7 +59,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-    </>
+    </div>
   );
 }
 

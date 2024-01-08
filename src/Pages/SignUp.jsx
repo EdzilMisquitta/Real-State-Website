@@ -71,7 +71,7 @@ function SignUp() {
   }
   return (
     <section>
-      <h1 className="text-center text-3xl mt-6 font-serif font-bold">
+      <h1 className="text-center text-3xl  font-serif font-bold">
         Sign UP
       </h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto ">
